@@ -17,7 +17,7 @@ main() {
     readarray -t arr < vcf_file_list
     for f in "${arr[@]}"
     do
-        dx download $DX_PROJECT_CONTEXT_ID:"$f"
+        dx download -f $DX_PROJECT_CONTEXT_ID:"$f"
     done
 
     # Create new file containing the vcfs stripped of the original directory path
