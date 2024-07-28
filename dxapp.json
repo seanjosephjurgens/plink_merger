@@ -50,7 +50,8 @@
     "network": [
       "*"
     ],
-    "project": "CONTRIBUTE"
+    "project": "CONTRIBUTE",
+    "allProjects": "VIEW"
   },
   "regionalOptions": {
     "aws:eu-west-2": {
