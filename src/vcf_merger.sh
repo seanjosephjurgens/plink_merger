@@ -24,7 +24,8 @@ main() {
     awk 'BEGIN{FS="/"}{print $NF}' vcf_file_list > vcf_filenames.txt
 
     # Perform the concatenation
-    bcftools concat --threads 16 -f vcf_filenames.txt -Oz -o merged_vcf
+    echo "using ${threads} threads!"
+    bcftools concat --threads ${threads} -f vcf_filenames.txt -Oz -o merged_vcf
 
     # Upload the merged vcf
     merged_vcf=$(dx upload merged_vcf --brief  --path ./$merged_vcf_filename)
