@@ -21,6 +21,14 @@
       "class": "string",
       "optional": false,
       "help": ""
+    },
+    {
+      "name": "threads",
+      "label": "Number of threads",
+      "class": "string",
+      "optional": true,
+      "default": "12",
+      "help": "Threads <= N cores"
     }
   ],
   "outputSpec": [
