@@ -7,28 +7,55 @@
 
 main() {
 
-    echo "File containing VCF file list: vcf_file_list: '$vcf_file_list'"
-    echo "Name of output file: '$merged_vcf_filename'"
+    echo "File containing PLINK2 file list: plink_file_list: '$plink_file_list'"
+    echo "Name of output file: '$merged_plink_filename'"
 
-    # Download file with VCF list to worker
-    dx download "$vcf_file_list" -o vcf_file_list
+    # Download file with PLINK2 list to worker
+    dx download "$plink_file_list" -o plink_file_list
 
     # Download all VCFs to worker
-    readarray -t arr < vcf_file_list
+    readarray -t arr < plink_file_list
     for f in "${arr[@]}"
     do
         dx download -f -a $DX_PROJECT_CONTEXT_ID:"$f"
     done
 
+    # Path to PLINK2 binary
+    dx download file-GpYzKvjJ5F2kQ5z2kvX44jP6
+    unzip plink2_linux_avx2_20240704.zip
+
     # Create new file containing the vcfs stripped of the original directory path
-    awk 'BEGIN{FS="/"}{print $NF}' vcf_file_list > vcf_filenames.txt
+    awk 'BEGIN{FS="/"}{print $NF}' plink_file_list > plink_filenames.txt
 
     # Perform the concatenation
     echo "using ${threads} threads!"
-    bcftools concat --threads ${threads} -f vcf_filenames.txt -Oz -o merged_vcf
+    ./plink2 \
+    --pmerge-list plink_filenames.txt \
+    --threads ${threads} \
+    --make-pgen \
+    --out merged_plink
 
-    # Upload the merged vcf
-    merged_vcf=$(dx upload merged_vcf --brief  --path ./$merged_vcf_filename)
-    dx-jobutil-add-output merged_vcf "$merged_vcf" --class=file
+    mv merged_plink.pgen pgen
+    mv merged_plink.pvar pvar
+    mv merged_plink.psam psam
+
+    pgen_filename="${merged_plink_filename}.pgen"
+    pvar_filename="${merged_plink_filename}.pvar"
+    psam_filename="${merged_plink_filename}.psam"
+
+    echo "PGEN outfile is: "$pgen_filename
+    echo "PVAR outfile is: "$pvar_filename
+    echo "PSAM outfile is: "$psam_filename
+    
+    # Upload the GDS file to the project directory
+    pgen=$(dx upload pgen --brief --path ./$pgen_filename)
+    dx-jobutil-add-output pgen "$pgen" --class=file
+
+    pvar=$(dx upload pvar --brief --path ./$pvar_filename)
+    dx-jobutil-add-output pvar "$pvar" --class=file
+
+    psam=$(dx upload psam --brief --path ./$psam_filename)
+    dx-jobutil-add-output psam "$psam" --class=file
+
 }
 
