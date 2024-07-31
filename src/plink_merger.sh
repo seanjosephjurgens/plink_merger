@@ -17,7 +17,9 @@ main() {
     readarray -t arr < plink_file_list
     for f in "${arr[@]}"
     do
-        dx download -f -a $DX_PROJECT_CONTEXT_ID:"$f".*
+        dx download -f -a $DX_PROJECT_CONTEXT_ID:"${f}.pgen"
+        dx download -f -a $DX_PROJECT_CONTEXT_ID:"${f}.pvar"
+        dx download -f -a $DX_PROJECT_CONTEXT_ID:"${f}.psam"
     done
 
     # Path to PLINK2 binary
