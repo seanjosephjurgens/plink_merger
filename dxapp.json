@@ -67,7 +67,7 @@
       }
     },
     "interpreter": "bash",
-    "file": "src/vcf_merger.sh",
+    "file": "src/plink_merger.sh",
     "distribution": "Ubuntu",
     "release": "20.04",
     "version": "0"
