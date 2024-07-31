@@ -25,7 +25,8 @@ main() {
     unzip plink2_linux_avx2_20240704.zip
 
     # Create new file containing the vcfs stripped of the original directory path
-    awk 'BEGIN{FS="/"}{print $NF}' plink_file_list > plink_filenames.txt
+    awk 'BEGIN{FS="/"}{print $NF}' plink_file_list > plink_filenames_inter.txt
+    awk '{ print $1".pgen", $1".pvar", $1".psam" }' plink_filenames_inter.txt > plink_filenames.txt
 
     # Perform the concatenation
     echo "using ${threads} threads!"
