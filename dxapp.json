@@ -1,13 +1,13 @@
 {
-  "name": "vcf_merger",
-  "title": "VCF Merging Tool",
-  "summary": "Uses bcftools to merge VCFs",
+  "name": "plink_merger",
+  "title": "PLINK2 Merging Tool",
+  "summary": "Uses plink2 to merge PLINK2 files",
   "dxapi": "1.0.0",
   "version": "0.0.1",
   "inputSpec": [
     {
-      "name": "vcf_file_list",
-      "label": "File containing list of vcf files to merge",
+      "name": "plink_file_list",
+      "label": "File containing list of plink files to merge",
       "class": "file",
       "optional": false,
       "patterns": [
@@ -16,8 +16,8 @@
       "help": ""
     },
     {
-      "name": "merged_vcf_filename",
-      "label": "Filename of merged vcf file to create",
+      "name": "merged_plink_filename",
+      "label": "Filename of merged plink file to create",
       "class": "string",
       "optional": false,
       "help": ""
@@ -32,9 +32,27 @@
     }
   ],
   "outputSpec": [
+   {
+      "name": "pgen",
+      "label": "PLINK2 pgen out-file",
+      "class": "file",
+      "patterns": [
+        "*"
+      ],
+      "help": ""
+    },
     {
-      "name": "merged_vcf",
-      "label": "Merged VCF file",
+      "name": "pvar",
+      "label": "PLINK2 pvar out-file",
+      "class": "file",
+      "patterns": [
+        "*"
+      ],
+      "help": ""
+    },
+    {
+      "name": "psam",
+      "label": "PLINK2 psam out-file",
       "class": "file",
       "patterns": [
         "*"
