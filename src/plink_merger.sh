@@ -35,6 +35,8 @@ main() {
     ./plink2 \
     --pmerge-list plink_filenames.txt \
     --threads ${threads} \
+    --set-missing-var-ids \
+    --new-id-max-allele-len 5000 \
     --make-pgen \
     --out merged_plink
 
