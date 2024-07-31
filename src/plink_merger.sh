@@ -23,8 +23,10 @@ main() {
     done
 
     # Path to PLINK2 binary
-    dx download file-Gpb62bjJ5F2X4442kzp3Gyfy
-    unzip plink2_linux_avx2_20240625.zip
+    #dx download file-Gpb62bjJ5F2X4442kzp3Gyfy
+    #unzip plink2_linux_avx2_20240625.zip
+    dx download file-GpYzKvjJ5F2kQ5z2kvX44jP6
+    unzip plink2_linux_avx2_20240704.zip
 
     # Create new file containing the vcfs stripped of the original directory path
     awk 'BEGIN{FS="/"}{print $NF}' plink_file_list > plink_filenames_inter.txt
@@ -35,8 +37,6 @@ main() {
     ./plink2 \
     --pmerge-list plink_filenames.txt \
     --threads ${threads} \
-    --set-missing-var-ids @:#:\$r:\$a \
-    --new-id-max-allele-len 5000 \
     --multiallelics-already-joined \
     --make-pgen \
     --out merged_plink
