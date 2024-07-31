@@ -7,7 +7,7 @@ This applet performs the merging of VCFs through [bcftools](https://samtools.git
 
 Clone this github repo to a local directory:
 ```
-git clone https://github.com/drarwood/vcf_merger
+git clone https://github.com/seanjosephjurgens/plink_merger
 ```
 
 Navigate to a relevant directory within the project directory on the DNAnexus platform to install the applet
@@ -17,7 +17,7 @@ dx cd /path/to/install/apps
 
 Now you are ready to build and upload the applet to the DNAnexus plaform directory:
 ```
-dx build -f vcf_merger
+dx build -f plink_merger
 ```
 ---
 #### Command line usage
@@ -29,9 +29,9 @@ Simply run the applet by specifying the name (and path if required) of the `*.vc
 Note priority is set to high below which is recommended for long processes to avoid jobs potentially being reset when running as normal priority jobs (see [`dx run`](https://documentation.dnanexus.com/user/helpstrings-of-sdk-command-line-utilities#run) on changing job priority):
 
 ```
-dx run /path/to/install/apps/vcf_merger \
-  -ivcf_file_list=/path/to/vcf/file/list.txt \
-  -imerged_vcf_filename=my_data_merged.vcf.gz \
+dx run /path/to/install/apps/plink_merger \
+  -iplink_file_list=/path/to/vcf/file/list.txt \
+  -imerged_plink_filename=my_data_merged \
   --priority high \
   -y
 ```
