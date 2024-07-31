@@ -37,6 +37,7 @@ main() {
     --threads ${threads} \
     --set-missing-var-ids @:#:\$r:\$a \
     --new-id-max-allele-len 5000 \
+    --multiallelics-already-joined \
     --make-pgen \
     --out merged_plink
 
