@@ -1,4 +1,4 @@
-# VCF Merger for UK Biobank RAP
+# PLINK2 Merger for UK Biobank RAP
 ##### Developed by Andrew Wood. University of Exeter
 This applet performs the merging of VCFs through [bcftools](https://samtools.github.io/bcftools/bcftools.html). If working with WGS VCFs, you should consider trimming down data that may not be required for subsequent analysis of the merged VCFs. [Here](https://github.com/drarwood/vcf_trimmer) is an applet that performs such operations.
 
