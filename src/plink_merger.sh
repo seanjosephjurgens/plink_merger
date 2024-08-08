@@ -37,6 +37,7 @@ main() {
     ./plink2 \
     --pmerge-list plink_filenames.txt \
     --threads ${threads} \
+    --keep-allele-order \
     --multiallelics-already-joined \
     --make-pgen \
     --out merged_plink
