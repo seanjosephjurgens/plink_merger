@@ -25,8 +25,8 @@ main() {
     # Path to PLINK2 binary
     #dx download file-Gpb62bjJ5F2X4442kzp3Gyfy
     #unzip plink2_linux_avx2_20240625.zip
-    dx download file-GpYzKvjJ5F2kQ5z2kvX44jP6
-    unzip plink2_linux_avx2_20240704.zip
+    dx download project-G8PjJkjJ5F2xY1f648Pj4JQx:/genome_500k_DRAGEN/04_plink/plink2_linux_avx2_20240818.zip
+    unzip plink2_linux_avx2_20240818.zip
 
     # Create new file containing the vcfs stripped of the original directory path
     awk 'BEGIN{FS="/"}{print $NF}' plink_file_list > plink_filenames_inter.txt
